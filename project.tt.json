@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "fq-service-weapp",
+  "appid": "testAppId",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}
