@@ -5,7 +5,7 @@
 import Taro from '@tarojs/taro';
 import { uString, uUrl, uUuid } from '@/utils/index';
 import _ from 'lodash-es';
-import { FQHttpEnums } from '@/enums'
+import { FQHttpEnums } from '@/enums';
 
 // import Service.dRequest = Service.Service.dRequest;
 // import StatusCode = Service.eFetch.StatusCode;
@@ -235,7 +235,7 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
                 header,
                 timeout,
                 enableChunked,
-                success: (res) => {
+                success: res => {
                     opts?.onSuccess?.(res);
                     resolve(res);
                 },

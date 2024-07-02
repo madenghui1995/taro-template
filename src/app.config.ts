@@ -1,3 +1,7 @@
+/**
+ * @Owners JJ
+ * @Title 启动文件
+ */
 import { pages, preloadRule, subPackages, tabBar } from './routerPath';
 
 export default defineAppConfig({
@@ -9,6 +13,6 @@ export default defineAppConfig({
         backgroundTextStyle: 'light',
         navigationBarBackgroundColor: '#fff',
         navigationBarTitleText: 'WeChat',
-        navigationBarTextStyle: 'black'
-    }
-})
+        navigationBarTextStyle: 'black',
+    },
+});

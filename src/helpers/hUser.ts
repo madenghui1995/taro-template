@@ -11,7 +11,7 @@ class HUser {
     public static readonly instance = new HUser();
     private constructor() { }
 
-    private refreshTimerId: number | null = null;
+    private readonly refreshTimerId: number | null = null;
 
     public readonly getCurrentOrNull = () => hGlobal.user;
 
@@ -27,7 +27,7 @@ class HUser {
 
     // 设置登录态
     public readonly setCurrent = () => {
-        
+
     };
 
     // 清除登录态
@@ -37,32 +37,30 @@ class HUser {
 
     // 登录
     public readonly login = async () => {
-        
+
     };
 
     // 注册
     public readonly register = async () => {
-       
+
     };
 
     // 登出
     public readonly logout = async (
-       
+
     ) => {
-        
+
     };
 
     // 获取最新用户信息
     public readonly getLatest = async () => {
-        return 
+        return;
     };
 
     // 刷新用户状态
     public readonly refreshCurrent = async () => {
-       
+
     };
-
-
 }
 
 export const hUser = HUser.instance;

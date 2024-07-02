@@ -2,7 +2,7 @@
  * @Owners cmZhou
  * @Title 通用常量
  */
-// eslint-disable-next-line no-restricted-imports
+
 // import config from '../../_config';
 
 const common = {
@@ -14,7 +14,7 @@ const common = {
     BUNDLE_PATH: '/assets/bundle',
     JS_BUNDLE_PATH: '/assets/bundle/js',
     ROOT_DOM_ID: 'caibird-react-root-container',
-}
+};
 
 const PROJECT_NAME = 'fq-service-weapp';
 // const PROJECT_TITLE = '服务商小程序';
@@ -24,9 +24,7 @@ const PROJECT_NAME = 'fq-service-weapp';
 //     port: 5053,
 // };
 
-  // 当前接口测试环境
-  
-
+// 当前接口测试环境
 
 
 const CDN_JS_BUNDLE_DIR = `${PROJECT_NAME}/jsbundle`;

@@ -7,8 +7,8 @@ const newUUID = () => {
     const randomId = 'xxxxxxxx-xxxx-4xxx-fxxx-xxxxxxxxxxxx'.split('-')
         .map(str => {
             const random = Math.random().toString(16);
-            return str[0] === '4' ? `4${random.substring(2, 5)}` :
-                str[0] === 'f' ? `${(parseInt(random[2], 16) & 0x3 | 0x8).toString(16)}${random.substring(2, 5)}` :
+            return str.startsWith('4') ? `4${random.substring(2, 5)}` :
+                str.startsWith('f') ? `${(parseInt(random[2], 16) & 0x3 | 0x8).toString(16)}${random.substring(2, 5)}` :
                 random.substring(2, str.length + 2);
         }).join('-');
     return randomId;

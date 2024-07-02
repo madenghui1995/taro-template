@@ -44,7 +44,7 @@ class HService extends base<HttpApis> {
     private readonly checkLogin = uAsync.asyncDebounce(() => hUser.login());
 
     private readonly apiCheckers: Record<string, Checker> = {
-       
+
     };
 
     private readonly pagePreloads: Record<string, PagePreLoad> = {
@@ -238,7 +238,7 @@ class HService extends base<HttpApis> {
         error: Service.dp.Obj,
         ctx: Service.dRequest.Context,
     ) => {
-        
+
         // const data = ctx.response?.data as dRequest.ResponseData;
         // if (!data) {
         //     this.reportPerf(ctx, error);

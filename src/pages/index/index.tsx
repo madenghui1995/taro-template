@@ -1,18 +1,21 @@
-import { View, Text } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
+/**
+ * @Owners JJ
+ * @Title 初始化
+ */
+import { View, Text } from '@tarojs/components';
+import { useLoad } from '@tarojs/taro';
 import { hRequest } from '@/helpers';
-import './index.scss'
+import './index.scss';
 
 export default function Index() {
+    useLoad(() => {
+        console.log('Page loaded.');
+        hRequest.api.home.getTemplateComponentList({});
+    });
 
-  useLoad(() => {
-    console.log('Page loaded.')
-    hRequest.api.home.getTemplateComponentList({});
-  })
-
-  return (
-      <View className='index'>
-        <Text>11117771</Text>
-      </View>
-  )
+    return (
+        <View className='index'>
+            <Text>11117771</Text>
+        </View>
+    );
 }

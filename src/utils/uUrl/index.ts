@@ -44,5 +44,5 @@ export const absolutePath = (path?: string, defaultVal?: string) => !path ? (def
 
 export const uUrl = {
     ossImg,
-    serializeUrl
+    serializeUrl,
 };
