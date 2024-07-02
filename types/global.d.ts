@@ -27,3 +27,60 @@ declare namespace NodeJS {
 }
 
 
+// declare namespace Service.dp {
+//     type Keys = number | string;
+
+//     type Obj<T = unknown> = {
+//         [K in Keys]: T;
+//     };
+// }
+
+
+
+// declare namespace global {
+//     namespace Caibird {
+//         type dResTypes = {
+//             [S in keyof HttpApis]: {
+//                 [A in keyof HttpApis[S]]: HttpApis[S][A] extends dRequest.AnyFunc ? ReturnType<HttpApis[S][A]> : never;
+//             };
+//         };
+//         type dReqTypes = {
+//             [S in keyof HttpApis]: {
+//                 [A in keyof HttpApis[S]]: HttpApis[S][A] extends dRequest.AnyFunc ? Parameters<HttpApis[S][A]>[0] : never;
+//             };
+//         };
+//     }
+// }
+
+
+declare namespace WechatMiniprogram {
+    interface Wx {
+        /**
+         * 监听路由变化
+         */
+        onAppRoute(callback: (route: {
+            openType: 'appLaunch' | 'autoRelaunch' | 'navigateBack' | 'navigateTo' | 'switchTab',
+            path: string,
+            query: Record<string, string | undefined>,
+            webviewId: number,
+            scene: number,
+        }) => void): void,
+
+        onAppUnhang(callback: () => void): void,
+    }
+
+    interface SystemInfo {
+        /**
+         * 客户端平台
+         *
+         * 可选值：
+         * - 'ios': iOS微信（包含 iPhone、iPad）;
+         * - 'android': Android微信;
+         * - 'windows': Windows微信;
+         * - 'mac': macOS微信;
+         * - 'devtools': 开发者工具
+         */
+        platform: 'android' | 'devtools' | 'ios' | 'mac' | 'windows',
+    }
+}
+
