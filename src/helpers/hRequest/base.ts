@@ -5,36 +5,37 @@
 import Taro from '@tarojs/taro';
 import { uString, uUrl, uUuid } from '@/utils/index';
 import _ from 'lodash-es';
+import { FQHttpEnums } from '@/enums'
 
-import dRequest = Service.dRequest;
-import StatusCode = Service.eFetch.StatusCode;
-import AnyObject = Service.dRequest.AnyObject;
-import AnyFunc = Service.dRequest.AnyFunc;
-import MethodType = Service.eHttp.MethodType;
-import ContentType = Service.eHttp.ContentType;
+// import Service.dRequest = Service.Service.dRequest;
+// import StatusCode = Service.eFetch.StatusCode;
+// import AnyObject = Service.dRequest.AnyObject;
+// import AnyFunc = Service.dRequest.AnyFunc;
+// import MethodType = eHttp.MethodType;
+// import ContentType = eHttp.ContentType;
 
 type ResponseCache = {
-    data: dRequest.ResponseData,
+    data: Service.dRequest.ResponseData,
     expired: number,
 };
 
-export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
+export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.dRequest.AnyObject<Service.dRequest.AnyFunc>>> {
     protected constructor(protected readonly options: {
         baseUrl: string,
         timeout?: number,
         retryTimes?: number,
         services: {
             [S in keyof TApis]: {
-                [A in keyof TApis[S]]: dRequest.ApiConfig
+                [A in keyof TApis[S]]: Service.dRequest.ApiConfig
             }
         },
     }) { }
 
     private readonly cacheData: Map<string, ResponseCache> = new Map();
 
-    protected abstract readonly onRequest?: (req: dRequest.RawRequest, ctx: dRequest.Context) => dRequest.RawRequest;
-    protected abstract readonly onResponse?: (res: dRequest.RawResponse, ctx: dRequest.Context) => dRequest.RawResponse;
-    protected abstract readonly onError?: (error: dRequest.AnyObject<string>, ctx: dRequest.Context) => void;
+    protected abstract readonly onRequest?: (req: Service.dRequest.RawRequest, ctx: Service.dRequest.Context) => Service.dRequest.RawRequest;
+    protected abstract readonly onResponse?: (res: Service.dRequest.RawResponse, ctx: Service.dRequest.Context) => Service.dRequest.RawResponse;
+    protected abstract readonly onError?: (error: Service.dRequest.AnyObject<string>, ctx: Service.dRequest.Context) => void;
 
     /**
      * service apis
@@ -58,13 +59,13 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
             svcs[service] = new Proxy<Record<string, unknown>>({}, {
                 get: (apis, api: string) => apis[api] || (
                     apis[api] = (
-                        req?: dRequest.RequestData,
-                        opt?: dRequest.RequestOptions,
+                        req?: Service.dRequest.RequestData,
+                        opt?: Service.dRequest.RequestOptions,
                     ) => this.handleApi(service, api, req, opt)
                 ),
             })
         ),
-    }) as dRequest.ServiceApis<TApis>;
+    }) as Service.dRequest.ServiceApis<TApis>;
 
     /**
      * handleApi
@@ -72,10 +73,10 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
     private readonly handleApi = (
         service: string,
         api: string,
-        req?: dRequest.RequestData,
-        opt?: dRequest.RequestOptions,
+        req?: Service.dRequest.RequestData,
+        opt?: Service.dRequest.RequestOptions,
     ) => {
-        let opts: dRequest.RequestOptions = { withRaw: false };
+        let opts: Service.dRequest.RequestOptions = { withRaw: false };
 
         if (!opt && typeof req === 'boolean') {
             opts.withRaw = !!req;
@@ -83,12 +84,12 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
             opts.withRaw = !!opt;
             opts.data = req;
         } else if (
-            typeof (req as AnyObject)?.withRaw === 'boolean' ||
-            typeof (req as AnyObject)?.cache === 'boolean'
+            typeof (req as Service.dRequest.AnyObject)?.withRaw === 'boolean' ||
+            typeof (req as Service.dRequest.AnyObject)?.cache === 'boolean'
         ) {
             opts = {
                 ...opts,
-                ...(req as dRequest.RequestOptions),
+                ...(req as Service.dRequest.RequestOptions),
             };
         } else {
             opts.data = req;
@@ -129,8 +130,8 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
     };
 
     protected readonly execute = async <T>(
-        opts?: dRequest.RequestOptions,
-    ): Promise<dRequest.ResponseData<T> | T> => {
+        opts?: Service.dRequest.RequestOptions,
+    ): Promise<Service.dRequest.ResponseData<T> | T> => {
         const start = Date.now();
         const {
             data,
@@ -144,7 +145,7 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
 
         const url = `${baseUrl}${path}`;
         const monitorId = opts?.monitorId || '';
-        const cacheKey = uUrl.serializeUrl(method, url, data as unknown as AnyObject);
+        const cacheKey = uUrl.serializeUrl(method, url, data as unknown as Service.dRequest.AnyObject);
 
         if (cache && this.cacheData.has(cacheKey)) {
             const cacheItem = this.cacheData.get(cacheKey);
@@ -153,7 +154,7 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
             }
         }
 
-        const ctx: dRequest.Context = {
+        const ctx: Service.dRequest.Context = {
             url,
             path,
             options: opts,
@@ -168,8 +169,8 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
             },
         };
 
-        // let raw: dRequest.RawResponse; // 响应内容
-        // let res: dRequest.ResponseData<T>; // 接口数据
+        // let raw: Service.dRequest.RawResponse; // 响应内容
+        // let res: Service.dRequest.ResponseData<T>; // 接口数据
 
         try {
             ctx.request = this.onRequest?.(ctx.request, ctx) ?? ctx.request;
@@ -182,7 +183,7 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
             };
 
             ctx.response = this.onResponse?.(ctx.response, ctx) ?? ctx.response;
-            const res = ctx.response.data as dRequest.ResponseData<T>;
+            const res = ctx.response.data as Service.dRequest.ResponseData<T>;
 
             if (cache || this.cacheData.has(cacheKey)) {
                 this.cacheData.set(cacheKey, {
@@ -210,18 +211,18 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
     };
 
     protected readonly request = (
-        req: dRequest.RawRequest,
-        opts?: dRequest.RequestOptions,
-    ): Promise<dRequest.RawResponse> => {
+        req: Service.dRequest.RawRequest,
+        opts?: Service.dRequest.RequestOptions,
+    ): Promise<Service.dRequest.RawResponse> => {
         const { url, method, data, contentType, headers: header = {} } = req;
         let { timeout = 20000 } = opts || {};
         const { enableChunked = false } = opts || {};
 
-        if (!uString.equalIC(method, MethodType.GET)) {
-            if (contentType === ContentType.JSON) {
-                header['content-Type'] = ContentType.JSON;
-            } else if (contentType === ContentType.FORM) {
-                header['content-Type'] = ContentType.FORM;
+        if (!uString.equalIC(method, FQHttpEnums.MethodType.GET)) {
+            if (contentType === FQHttpEnums.ContentType.JSON) {
+                header['content-Type'] = FQHttpEnums.ContentType.JSON;
+            } else if (contentType === FQHttpEnums.ContentType.FORM) {
+                header['content-Type'] = FQHttpEnums.ContentType.FORM;
             }
         }
 
@@ -266,8 +267,8 @@ export abstract class HService<TApis extends AnyObject<AnyObject<AnyFunc>>> {
     public readonly fetch = async <T>(
         method: Service.eHttp.MethodType,
         url: string,
-        data?: dRequest.RequestData,
-        opt: dRequest.RequestOptions = { withRaw: false },
+        data?: Service.dRequest.RequestData,
+        opt: Service.dRequest.RequestOptions = { withRaw: false },
     ): Promise<T> => {
         const res = await this.request({ method, url, data, headers: opt.headers }, opt);
         return res?.data as T;

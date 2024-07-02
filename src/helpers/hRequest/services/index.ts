@@ -1,10 +1,13 @@
 
+
+import { home } from './home';
+
 export type HttpApis = {
-    
+    home: home,
 };
 
 export const httpServices = {
-
+    home,
 };
 
 

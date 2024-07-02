@@ -79,7 +79,6 @@ const pages = [
 const preloadRule = {
    
 };
-console.log('pages', pages);
 
 
 export {

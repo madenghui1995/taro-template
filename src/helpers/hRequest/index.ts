@@ -10,6 +10,7 @@ import MD5 from 'crypto-js/md5';
 import Pkcs7 from 'crypto-js/pad-pkcs7';
 import { cConfig, cSubRoutes } from '../../consts/';
 import { hGlobal, hNavigator } from '../../helpers/index';
+import { FQHttpEnums } from '@/enums'
 // import { uUuid } from '../../utils/uUuid';
 
 
@@ -18,13 +19,12 @@ import { uAsync } from '../../utils/uAsync';
 import { HService as base } from './base';
 import { HttpApis, httpServices as services } from '@/helpers/hRequest/services';
 
-import dRequest = Service.dRequest;
-import StatusCode = Service.eFetch.StatusCode;
+import StatusCode = FQHttpEnums.BackEndStatusCode;
 import { hUser } from '../hUser';
 
 type Checker = (
-    data: dRequest.ResponseData,
-    ctx?: dRequest.Context
+    data: Service.dRequest.ResponseData,
+    ctx?: Service.dRequest.Context
 ) => void;
 
 type OpenType = 'back' | 'launch' | 'push' | 'reload' | 'replace';
@@ -123,8 +123,8 @@ class HService extends base<HttpApis> {
     };
 
     protected readonly onRequest = (
-        req: dRequest.RawRequest,
-        ctx: dRequest.Context,
+        req: Service.dRequest.RawRequest,
+        ctx: Service.dRequest.Context,
     ) => {
         const headers = req.headers || {};
         try {
@@ -177,10 +177,10 @@ class HService extends base<HttpApis> {
     };
 
     protected readonly onResponse = (
-        res: dRequest.RawResponse,
-        ctx: dRequest.Context,
+        res: Service.dRequest.RawResponse,
+        ctx: Service.dRequest.Context,
     ) => {
-        const data = res.data as dRequest.ResponseData;
+        const data = res.data as Service.dRequest.ResponseData;
 
         // 登录成功
         if (String(data?.code) === StatusCode.SUCCESS) {
@@ -236,7 +236,7 @@ class HService extends base<HttpApis> {
 
     protected readonly onError = (
         error: Service.dp.Obj,
-        ctx: dRequest.Context,
+        ctx: Service.dRequest.Context,
     ) => {
         
         // const data = ctx.response?.data as dRequest.ResponseData;
