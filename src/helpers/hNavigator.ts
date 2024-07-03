@@ -62,7 +62,7 @@ export abstract class HNavigatorBase {
         return urlParams;
     };
 
-    public readonly transformParams = <T>(url: string): ParamsObject<T> => {
+    public readonly transformParams = <T, >(url: string): ParamsObject<T> => {
         const queryString = url.split('?')[1];
         if (!queryString) {
             return {}; // 如果没有查询参数，返回一个空对象
