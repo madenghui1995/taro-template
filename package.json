@@ -30,7 +30,8 @@
     "dev:jd": "npm run build:jd -- --watch",
     "dev:quickapp": "npm run build:quickapp -- --watch",
     "dev:harmony-hybrid": "npm run build:harmony-hybrid -- --watch",
-    "test": "jest"
+    "test": "jest",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx src --fix"
   },
   "browserslist": [
     "last 3 versions",

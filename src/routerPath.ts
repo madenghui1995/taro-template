@@ -51,7 +51,7 @@ const subPackages: {
     pages: string[],
     moduleId: number,
 }[] = [
-    
+
 ];
 
 const tabBar = {
@@ -77,7 +77,7 @@ const pages = [
 ];
 
 const preloadRule = {
-   
+
 };
 
 

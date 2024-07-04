@@ -8,7 +8,6 @@ import { equalIC } from './equalIC';
 // import { subText } from './subText';
 
 
-
 export const uString = {
     check,
     equalIC,

@@ -3,7 +3,7 @@
  * @Title 维护一个冷启动周期内的全局变量模块
  */
 import Taro from '@tarojs/taro';
-import { cConfig } from '@/public/cConfig'
+import { cConfig } from '@/public/cConfig';
 
 const ratioKey = 'ratio';
 const statusBarHeightKey = 'statusBarHeight';
@@ -12,7 +12,7 @@ const menuButtonHeightKey = 'menuButtonHeight';
 const navigationBarHeightKey = 'navigationBarHeight';
 const brandKey = 'brand';
 const systemKey = 'system';
-const globalUserInfo = 'userInfo'
+const globalUserInfo = 'userInfo';
 
 
 export const openIdKey = 'openId';
@@ -37,7 +37,7 @@ class HGlobal {
     private _brand = Taro.getStorageSync<string>(brandKey);
     private _system = Taro.getStorageSync<string>(systemKey);
 
-    private _uuid = Taro.getStorageSync<string>(uuidKey) || '';
+    private readonly _uuid = Taro.getStorageSync<string>(uuidKey) || '';
     private _openId = Taro.getStorageSync<string>(openIdKey) || '';
     private _userInfo = Taro.getStorageSync<UserInfo | null>(globalUserInfo) || null;
 

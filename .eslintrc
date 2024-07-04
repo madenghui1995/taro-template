@@ -35,6 +35,7 @@
   "noInlineConfig": false,
   "reportUnusedDisableDirectives": true,
   "rules": {
+    "import/first": "off",
     "@typescript-eslint/prefer-const": "off",
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/adjacent-overload-signatures": [
@@ -676,7 +677,7 @@
     "max-lines": "off",
     "new-parens": "error",
     "newline-per-chained-call": "off",
-    "no-bitwise": "error",
+    "no-bitwise": "off",
     "no-caller": "error",
     "no-eval": "error",
     "no-extra-bind": "error",
