@@ -52,5 +52,5 @@ function mergeStyle(
 export {
     pxTransform,
     objectToString,
-    mergeStyle
-}
+    mergeStyle,
+};

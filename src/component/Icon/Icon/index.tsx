@@ -33,7 +33,6 @@ export default class AtIcon extends React.Component<dTaroUi.AtIconProps> {
 
         const iconName = value ? `${prefixClass}-${value}` : '';
         return (
-
             <Text
                 className={classNames(prefixClass, iconName, className)}
                 style={mergeStyle(rootStyle, customStyle as Service.dp.Obj)}

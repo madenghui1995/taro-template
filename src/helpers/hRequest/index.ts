@@ -3,12 +3,16 @@
  * @Title  图标组件
  */
 import Taro from '@tarojs/taro';
+// eslint-disable-next-line import/no-internal-modules
 import AES from 'crypto-js/aes';
+// eslint-disable-next-line import/no-internal-modules
 import Utf8 from 'crypto-js/enc-utf8';
+// eslint-disable-next-line import/no-internal-modules
 import MD5 from 'crypto-js/md5';
+// eslint-disable-next-line import/no-internal-modules
 import Pkcs7 from 'crypto-js/pad-pkcs7';
-import { cConfig, cSubRoutes } from '../../consts/';
-import { hGlobal, hNavigator } from '../../helpers/index';
+import { cConfig } from '../../consts/';
+import { hGlobal } from '../../helpers/index';
 import { FQHttpEnums } from '@/enums';
 // import { uUuid } from '../../utils/uUuid';
 

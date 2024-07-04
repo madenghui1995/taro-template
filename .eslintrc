@@ -26,7 +26,6 @@
     "eslint-plugin-header"
   ],
   "globals": {},
-  "extends": ["taro/react"],
   "ignorePatterns": [
     "**/dist/**",
     "**/node_modules/**"
@@ -325,7 +324,7 @@
         "exports": "always-multiline",
         "functions": "always-multiline",
         "enums": "always-multiline",
-        "generics": "always-multiline",
+        "generics": "off",
         "tuples": "always-multiline"
       }
     ],

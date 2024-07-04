@@ -264,7 +264,7 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
         });
     };
 
-    public readonly fetch = async <T, >(
+    public readonly fetch = async <T >(
         method: Service.eHttp.MethodType,
         url: string,
         data?: Service.dRequest.RequestData,
