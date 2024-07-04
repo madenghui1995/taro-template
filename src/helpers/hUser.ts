@@ -54,6 +54,7 @@ class HUser {
 
     // 获取最新用户信息
     public readonly getLatest = async () => {
+        console.log('test');
         return;
     };
 
