@@ -4,12 +4,12 @@
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 namespace _uAsync {
-    type AsyncFunc<T> = (...args: any[]) => Promise<T>;
+    type AsyncFunc<T,> = (...args: any[]) => Promise<T>;
 
     /**
      * 异步防抖
      */
-    export const asyncDebounce = <T, >(func: AsyncFunc<T>, wait = 2000) => {
+    export const asyncDebounce = <T,>(func: AsyncFunc<T>, wait = 2000) => {
         let timer = 0;
         let task: Promise<T> | null = null;
 

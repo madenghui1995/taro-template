@@ -266,7 +266,6 @@
         "ignoreStringArrays": true
       }
     ],
-    "@typescript-eslint/restrict-plus-operands": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/sort-type-constituents": [
       "error",
@@ -324,8 +323,8 @@
         "exports": "always-multiline",
         "functions": "always-multiline",
         "enums": "always-multiline",
-        "generics": "off",
-        "tuples": "always-multiline"
+        "tuples": "always-multiline",
+        "generics": "always"
       }
     ],
     "comma-spacing": "off",

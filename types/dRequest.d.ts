@@ -3,27 +3,27 @@
  * @Title dRequest
  */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ContentType } from '../src/enums/http'
+import { ContentType } from '../src/enums/http';
 
 declare global {
     namespace Service.dRequest {
         type Overwrite<T, U> = Omit<T, keyof U> & U;
-    
+
         type AnyObject<V = any> = Record<string, V>;
-    
+
         type AnyFunc = (...args: any) => any;
-    
+
         type NoArgsFunc = () => any;
-    
+
         type HttpMethod = 'DELETE' | 'GET' | 'OPTIONS' | 'POST' | 'PUT';
-    
+
         /**
          * 请求选项类型
          */
         type RequestOptions<
             TData extends AnyObject = RequestData,
             TResult extends ResponseData = ResponseData,
-            TRaw extends boolean = boolean,
+            TRaw extends boolean = boolean
         > = {
             baseUrl?: string,
             path?: string,
@@ -58,7 +58,7 @@ declare global {
              */
             // monitor?: AnyObject,
         };
-    
+
         /**
          * 接口请求内容类型
          */
@@ -70,7 +70,7 @@ declare global {
             dataType?: string,
             headers?: Record<string, string>,
         };
-    
+
         /**
          * 响应原始内容类型
          */
@@ -86,12 +86,12 @@ declare global {
              */
             profile?: RequestProfile,
         };
-    
+
         /**
          * 接口请求数据类型
          */
         type RequestData = AnyObject | ArrayBuffer | FormData | string;
-    
+
         /**
          * 后端接口响应内容
          */
@@ -102,7 +102,7 @@ declare global {
             msg?: string,
             trace?: string,
         };
-    
+
         /**
          * 请求上下文
          */
@@ -120,16 +120,16 @@ declare global {
                 profile?: AnyObject,
             },
         };
-    
+
         type ApiConfig<
             T1 extends RequestData = RequestData,
-            T2 extends ResponseData = ResponseData,
+            T2 extends ResponseData = ResponseData
         > = {
             baseUrl?: string,
             path: string,
             isMock?: boolean,
             method: HttpMethod,
-            contentType?:  ContentType,
+            contentType?: ContentType,
             timeout?: number,
             cache?: boolean,
             monitor?: boolean,
@@ -138,75 +138,75 @@ declare global {
             useReuqest?(req: T1): T1,
             useResponse?(res: T2): T2,
         };
-    
+
         type ApiConfigs<T extends string> = Record<T, ApiConfig>;
-    
+
         interface ServiceApi<F extends AnyFunc> {
             (...args: Parameters<F>): Promise<ReturnType<F>>,
             (...args: [...Parameters<F>, true]): Promise<ResponseData<ReturnType<F>>>,
             (opts: RequestOptions<Parameters<F>[0], ReturnType<F>, false>): Promise<ReturnType<F>>,
             (opts: RequestOptions<Parameters<F>[0], ReturnType<F>, true>): Promise<ResponseData<ReturnType<F>>>,
         }
-    
+
         type ServiceApis<T extends AnyObject<AnyObject<AnyFunc>>> = {
             [S in keyof T]: {
                 [A in keyof T[S]]: T[S][A] extends AnyFunc ? ServiceApi<T[S][A]> : never;
             };
         };
-    
+
         interface RequestProfile {
             /** SSL建立完成的时间,如果不是安全连接,则值为 0 */
-            SSLconnectionEnd: number
+            SSLconnectionEnd: number,
             /** SSL建立连接的时间,如果不是安全连接,则值为 0 */
-            SSLconnectionStart: number
+            SSLconnectionStart: number,
             /** HTTP（TCP） 完成建立连接的时间（完成握手），如果是持久连接，则与 fetchStart 值相等。注意如果在传输层发生了错误且重新建立连接，则这里显示的是新建立的连接完成的时间。注意这里握手结束，包括安全连接建立完成、SOCKS 授权通过 */
-            connectEnd: number
+            connectEnd: number,
             /** HTTP（TCP） 开始建立连接的时间，如果是持久连接，则与 fetchStart 值相等。注意如果在传输层发生了错误且重新建立连接，则这里显示的是新建立的连接开始的时间 */
-            connectStart: number
+            connectStart: number,
             /** DNS 域名查询完成的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等 */
-            domainLookUpEnd: number
+            domainLookUpEnd: number,
             /** DNS 域名查询开始的时间，如果使用了本地缓存（即无 DNS 查询）或持久连接，则与 fetchStart 值相等 */
-            domainLookUpStart: number
+            domainLookUpStart: number,
             /** 评估当前网络下载的kbps */
-            downstreamThroughputKbpsEstimate: number
+            downstreamThroughputKbpsEstimate: number,
             /** 评估的网络状态 unknown, offline, slow 2g, 2g, 3g, 4g, last/0, 1, 2, 3, 4, 5, 6 */
-            estimate_nettype: number
+            estimate_nettype: number,
             /** 组件准备好使用 HTTP 请求抓取资源的时间，这发生在检查本地缓存之前 */
-            fetchStart: number
+            fetchStart: number,
             /** 协议层根据多个请求评估当前网络的 rtt（仅供参考） */
-            httpRttEstimate: number
+            httpRttEstimate: number,
             /** 当前请求的IP */
-            peerIP: string
+            peerIP: string,
             /** 当前请求的端口 */
-            port: number
+            port: number,
             /** 使用协议类型，有效值：http1.1, h2, quic, unknown */
-            protocol: string
+            protocol: string,
             /** 收到字节数 */
-            receivedBytedCount: number
+            receivedBytedCount: number,
             /** 最后一个 HTTP 重定向完成时的时间。有跳转且是同域名内部的重定向才算，否则值为 0 */
-            redirectEnd: number
+            redirectEnd: number,
             /** 第一个 HTTP 重定向发生时的时间。有跳转且是同域名内的重定向才算，否则值为 0 */
-            redirectStart: number
+            redirectStart: number,
             /** HTTP请求读取真实文档结束的时间 */
-            requestEnd: number
+            requestEnd: number,
             /** HTTP请求读取真实文档开始的时间（完成建立连接），包括从本地读取缓存。连接错误重连时，这里显示的也是新建立连接的时间 */
-            requestStart: number
+            requestStart: number,
             /** HTTP 响应全部接收完成的时间（获取到最后一个字节），包括从本地读取缓存 */
-            responseEnd: number
+            responseEnd: number,
             /** HTTP 开始接收响应的时间（获取到第一个字节），包括从本地读取缓存 */
-            responseStart: number
+            responseStart: number,
             /** 当次请求连接过程中实时 rtt */
-            rtt: number
+            rtt: number,
             /** 发送的字节数 */
-            sendBytesCount: number
+            sendBytesCount: number,
             /** 是否复用连接 */
-            socketReused: boolean
+            socketReused: boolean,
             /** 当前网络的实际下载kbps */
-            throughputKbps: number
+            throughputKbps: number,
             /** 传输层根据多个请求评估的当前网络的 rtt（仅供参考） */
-            transportRttEstimate: number
+            transportRttEstimate: number,
         }
-    
+
         interface RequestTask {
             /** [RequestTask.abort()](https://developers.weixin.qq.com/miniprogram/dev/api/network/request/RequestTask.abort.html)
              *
@@ -215,8 +215,8 @@ declare global {
              * 在插件中使用：支持
              *
              * 中断请求任务 */
-            abort(): void
+            abort(): void,
         }
-    
+
     }
 }

@@ -4,7 +4,7 @@
  */
 import { check } from './check';
 
-export const jsonParse = <T >(str: string): T[] => {
+export const jsonParse = <T, >(str: string): T[] => {
     const dft: T[] = [];
     try {
         const arr: unknown = JSON.parse(str);

@@ -8,7 +8,7 @@ import { uObject } from '@/utils';
 
 import { tabBarConfig } from '../routerPath';
 
-interface ParamsObject<T> {
+interface ParamsObject<T,> {
     [key: string]: T,
 }
 
@@ -33,7 +33,7 @@ export abstract class HNavigatorBase {
     protected readonly LOGIN_PATH: string;
     protected readonly TAB_PATHS: string[];
 
-    private readonly isCurrentPath = url => Taro.getCurrentInstance()?.router?.path === url;
+    private readonly isCurrentPath = (url: string) => Taro.getCurrentInstance()?.router?.path === url;
 
     private readonly navigateTo = (path: string) => {
         if (this.TAB_PATHS.includes(path)) return 'switchTab';
@@ -62,7 +62,7 @@ export abstract class HNavigatorBase {
         return urlParams;
     };
 
-    public readonly transformParams = <T >(url: string): ParamsObject<T> => {
+    public readonly transformParams = <T,>(url: string): ParamsObject<T> => {
         const queryString = url.split('?')[1];
         if (!queryString) {
             return {}; // 如果没有查询参数，返回一个空对象
