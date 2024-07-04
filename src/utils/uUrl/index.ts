@@ -4,7 +4,7 @@
  */
 
 import { cIcon } from '@/consts/cIcon';
-import { ossImg } from './ossImg';
+// import { ossImg } from './ossImg';
 
 export const WXAVATAR_HOST = 'https://thirdwx.qlogo.cn';
 
@@ -43,6 +43,6 @@ export const serializeUrl = (method: string, url: string, params?: Record<string
 export const absolutePath = (path?: string, defaultVal?: string) => !path ? (defaultVal ?? '/') : path.startsWith('/') ? path : `/${path}`;
 
 export const uUrl = {
-    ossImg,
+    // ossImg,
     serializeUrl,
 };

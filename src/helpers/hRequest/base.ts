@@ -129,7 +129,7 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
         return retryTimes ? retry() : this.execute(opts);
     };
 
-    protected readonly execute = async <T>(
+    protected readonly execute = async <T, >(
         opts?: Service.dRequest.RequestOptions,
     ): Promise<Service.dRequest.ResponseData<T> | T> => {
         const start = Date.now();
@@ -264,7 +264,7 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
         });
     };
 
-    public readonly fetch = async <T>(
+    public readonly fetch = async <T, >(
         method: Service.eHttp.MethodType,
         url: string,
         data?: Service.dRequest.RequestData,
