@@ -1,8 +1,7 @@
 /**
  * @Owners jiangzm
- * @Title hService helper
+ * @Title  图标组件
  */
-/* eslint-disable import/no-internal-modules */
 import Taro from '@tarojs/taro';
 import AES from 'crypto-js/aes';
 import Utf8 from 'crypto-js/enc-utf8';
@@ -10,9 +9,8 @@ import MD5 from 'crypto-js/md5';
 import Pkcs7 from 'crypto-js/pad-pkcs7';
 import { cConfig, cSubRoutes } from '../../consts/';
 import { hGlobal, hNavigator } from '../../helpers/index';
-import { FQHttpEnums } from '@/enums'
+import { FQHttpEnums } from '@/enums';
 // import { uUuid } from '../../utils/uUuid';
-
 
 import { uAsync } from '../../utils/uAsync';
 

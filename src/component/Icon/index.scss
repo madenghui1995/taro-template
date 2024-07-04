@@ -1,0 +1,15 @@
+@font-face {
+    font-family: "fq-icon";
+    src: url('https://stantic.ifengqun.com/sprites/iconfont/fq-icons/iconfont.woff2?t=1709018039394') format('woff2'),
+        url('https://stantic.ifengqun.com/sprites/iconfont/fq-icons/iconfont.woff?t=1709018039394') format('woff'),
+        url('https://stantic.ifengqun.com/sprites/iconfont/fq-icons/iconfont.ttf?t=1709018039394') format('truetype'),
+        url('https://stantic.ifengqun.com/sprites/iconfont/fq-icons/iconfont.svg?t=1709018039394#fq-icon') format('svg');
+}
+
+.fq-icon {
+    font-family: 'fq-icon' !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
