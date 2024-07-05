@@ -4,6 +4,7 @@ import EslintWebpackPlugin from 'eslint-webpack-plugin';
 import devConfig from './dev';
 import prodConfig from './prod';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
+// import WebpackBundleAnalyzer from 'webpack-bundle-analyzer';
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge) => {
@@ -76,7 +77,9 @@ export default defineConfig(async (merge) => {
                     // eslint: {
                     //     files: "./src/**/*.{ts,tsx,js,jsx}", // 配置ESLint报错文件范围
                     // },
-                }]);        
+                }]);     
+                // 代码分析
+                // chain.plugin('analyzer').use(WebpackBundleAnalyzer.BundleAnalyzerPlugin, []);
             },
         },
         h5: {
