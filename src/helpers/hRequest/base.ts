@@ -237,14 +237,14 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
                 enableChunked,
                 success: res => {
                     opts?.onSuccess?.(res);
-                    resolve(res);
+                    resolve(res as unknown as Service.dRequest.RawResponse);
                 },
                 fail: res => {
                     Taro.hideLoading();
                     opts?.onFail?.(res);
                     reject({
                         ...res,
-                        errno: res.errno || 9999,
+                        errno: (res as unknown as { errno: number}).errno || 9999,
                         errMsg: res.errMsg || 'request:reject',
                     });
                 },

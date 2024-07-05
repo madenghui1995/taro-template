@@ -23,7 +23,7 @@ const serializeParams = (params: Record<string, unknown> | string) => {
     if (Object.prototype.toString.call(params) === '[object Object]') {
         const keys = Object.keys(params).sort();
         return keys.reduce<string[]>((res, key) => {
-            res.push(`${key}=${params[key]}`);
+            res.push(`${key}=${(params as Service.dp.Obj)[key] as unknown as string}`);
             return res;
         }, []).join('&');
     }

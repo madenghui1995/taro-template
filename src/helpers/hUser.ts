@@ -11,7 +11,7 @@ class HUser {
     public static readonly instance = new HUser();
     private constructor() { }
 
-    private readonly refreshTimerId: number | null = null;
+    // private readonly refreshTimerId: number | null = null;
 
     public readonly getCurrentOrNull = () => hGlobal.user;
 

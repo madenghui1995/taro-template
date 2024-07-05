@@ -24,7 +24,7 @@
     "eslint-plugin-jsdoc",
     "eslint-plugin-react",
     "eslint-plugin-header"
-  ],
+],
   "globals": {},
   "ignorePatterns": [
     "**/dist/**",
@@ -34,6 +34,7 @@
   "noInlineConfig": false,
   "reportUnusedDisableDirectives": true,
   "rules": {
+
     "import/first": "off",
     "@typescript-eslint/prefer-const": "off",
     "@typescript-eslint/no-shadow": "off",

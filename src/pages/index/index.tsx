@@ -1,19 +1,19 @@
 /**
- * @Owners JJ
- * @Title 初始化
+ * @Owners Jeannette
+ * @Title 首页
  */
-import { View, Text } from '@tarojs/components';
+import './index.scss';
+import { Text, View } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import { hRequest } from '@/helpers';
-import './index.scss';
 
 export default function Index() {
     useLoad(() => {
-        console.log('Page loaded.');
         hRequest.api.home.getTemplateComponentList({});
     });
 
-    return (<View className='index' >
-        <Text>111171123123771123123213、</Text>2313213
+    return (<View className='index'>
+        <Text>1</Text>
+        <Text>2</Text>
     </View>);
 }

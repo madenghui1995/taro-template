@@ -62,78 +62,78 @@ class HService extends base<HttpApis> {
         // },
     };
 
-    private readonly reportPerf = (
-        // ctx: dRequest.Context,
-        // error?: Service.dp.Obj,
-    ) => {
-        try {
-            // const response = ctx?.response;
-            // const data = response?.data as dRequest.ResponseData;
-            // const state = ctx?.state;
+    // private readonly reportPerf = (
+    //     // ctx: dRequest.Context,
+    //     // error?: Service.dp.Obj,
+    // ) => {
+    //     try {
+    //         // const response = ctx?.response;
+    //         // const data = response?.data as dRequest.ResponseData;
+    //         // const state = ctx?.state;
 
-            // // 接口性能上报
-            // if (state && state.monitorId) {
-            //     if (ctx.timing.rtt > 30000) {
-            //         hLogger.error(`${state.monitorId}, time: ${ctx.timing.rtt}ms`, ctx.state?.done, ctx.timing);
-            //         return;
-            //     }
+    //         // // 接口性能上报
+    //         // if (state && state.monitorId) {
+    //         //     if (ctx.timing.rtt > 30000) {
+    //         //         hLogger.error(`${state.monitorId}, time: ${ctx.timing.rtt}ms`, ctx.state?.done, ctx.timing);
+    //         //         return;
+    //         //     }
 
-            //     const performance = {
-            //         wxdata_perf_monitor_id: state.monitorId,
-            //         wxdata_perf_monitor_level: 0,
-            //         wxdata_perf_error_code: Number(response?.errno || data?.code || error?.errno || 0),
-            //         wxdata_perf_error_msg: String(response?.errMsg || data?.msg || error?.errMsg || ''),
-            //         wxdata_perf_cost_time: ctx.timing.rtt || 0,
-            //     };
+    //         //     const performance = {
+    //         //         wxdata_perf_monitor_id: state.monitorId,
+    //         //         wxdata_perf_monitor_level: 0,
+    //         //         wxdata_perf_error_code: Number(response?.errno || data?.code || error?.errno || 0),
+    //         //         wxdata_perf_error_msg: String(response?.errMsg || data?.msg || error?.errMsg || ''),
+    //         //         wxdata_perf_cost_time: ctx.timing.rtt || 0,
+    //         //     };
 
-            //     hReport.reportEvent(cReportEvents.PERF_BASIC_MONITOR, performance);
-            //     // hLogger.debug(state.monitorId, ctx.timing.rtt, ctx.timing.profile?.rtt);
+    //         //     hReport.reportEvent(cReportEvents.PERF_BASIC_MONITOR, performance);
+    //         //     // hLogger.debug(state.monitorId, ctx.timing.rtt, ctx.timing.profile?.rtt);
 
-            //     if (state.moduleId) {
-            //         hReport.reportEvent(cReportEvents.PERF_MODULE_MONITOR, {
-            //             ...performance,
-            //             wxdata_perf_module_id: String(state.moduleId),
-            //         });
-            //     } else if (state.serviceId) {
-            //         // const pageProps = hReport.getPageProps();
-            //         hReport.reportEvent(cReportEvents.PERF_SERVICE_MONITOR, {
-            //             ...performance,
-            //             wxdata_perf_monitor_level: 1,
-            //             wxdata_perf_service_id: String(state.serviceId),
-            //             wxdata_perf_step_type: 0,
-            //             wxdata_perf_step_id: String(state.serviceStepId),
-            //         });
-            //     }
-            // }
+    //         //     if (state.moduleId) {
+    //         //         hReport.reportEvent(cReportEvents.PERF_MODULE_MONITOR, {
+    //         //             ...performance,
+    //         //             wxdata_perf_module_id: String(state.moduleId),
+    //         //         });
+    //         //     } else if (state.serviceId) {
+    //         //         // const pageProps = hReport.getPageProps();
+    //         //         hReport.reportEvent(cReportEvents.PERF_SERVICE_MONITOR, {
+    //         //             ...performance,
+    //         //             wxdata_perf_monitor_level: 1,
+    //         //             wxdata_perf_service_id: String(state.serviceId),
+    //         //             wxdata_perf_step_type: 0,
+    //         //             wxdata_perf_step_id: String(state.serviceStepId),
+    //         //         });
+    //         //     }
+    //         // }
 
-            // // 接口异常上报
-            // if (error || !ctx.state?.success) {
-            //     const status = response?.statusCode || 0;
-            //     const errno = `${error?.errMsg || response?.errMsg}[${error?.errno || response?.errno}]`;
-            //     const errCode = data?.code ? `${data.msg}[${data.code}]` : '';
-            //     hLogger.warn(`${ctx.path}, status:${status}, ${errno} ${errCode}`, {
-            //         request: ctx.request.data,
-            //         response: ctx.response?.data,
-            //         traceId: ctx.options?.traceId,
-            //         // timing: ctx.timing,
-            //         rtt: ctx.timing?.rtt,
-            //     }, error || '');
-            // }
-        } catch (ex) {
-            // hLogger.error('hService.reportPerf', ex);
-        }
-    };
+    //         // // 接口异常上报
+    //         // if (error || !ctx.state?.success) {
+    //         //     const status = response?.statusCode || 0;
+    //         //     const errno = `${error?.errMsg || response?.errMsg}[${error?.errno || response?.errno}]`;
+    //         //     const errCode = data?.code ? `${data.msg}[${data.code}]` : '';
+    //         //     hLogger.warn(`${ctx.path}, status:${status}, ${errno} ${errCode}`, {
+    //         //         request: ctx.request.data,
+    //         //         response: ctx.response?.data,
+    //         //         traceId: ctx.options?.traceId,
+    //         //         // timing: ctx.timing,
+    //         //         rtt: ctx.timing?.rtt,
+    //         //     }, error || '');
+    //         // }
+    //     } catch (ex) {
+    //         // hLogger.error('hService.reportPerf', ex);
+    //     }
+    // };
 
     protected readonly onRequest = (
         req: Service.dRequest.RawRequest,
-        ctx: Service.dRequest.Context,
+        _ctx: Service.dRequest.Context,
     ) => {
         const headers = req.headers || {};
         try {
-            const { openId, apiEnv } = hGlobal;
-            const { platform, enableDebug } = Taro.getSystemInfoSync();
+            const { apiEnv } = hGlobal;
+            const { enableDebug } = Taro.getSystemInfoSync();
             const { miniProgram: mini } = Taro.getAccountInfoSync();
-            const { version: extVersion } = Taro.getExtConfigSync?.() || {};
+            // const { version: extVersion } = Taro.getExtConfigSync?.() || {};
 
             if (process.env.NODE_ENV === 'production') {
                 // if (apiEnv && /^test\d?/.test(apiEnv)) {
@@ -237,8 +237,8 @@ class HService extends base<HttpApis> {
     };
 
     protected readonly onError = (
-        error: Service.dp.Obj,
-        ctx: Service.dRequest.Context,
+        _error: Service.dp.Obj,
+        _ctx: Service.dRequest.Context,
     ) => {
 
         // const data = ctx.response?.data as dRequest.ResponseData;

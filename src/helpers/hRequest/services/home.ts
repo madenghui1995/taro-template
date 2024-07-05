@@ -9,7 +9,6 @@ export const home: Service.dRequest.ApiConfigs<keyof home> = {
         method: FQHttpEnums.MethodType.POST,
         path: '/mall/shop/decorate/template/getTemplateComponentList',
     },
-
 };
 
 export type home = {

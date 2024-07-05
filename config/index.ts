@@ -3,6 +3,7 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
 import EslintWebpackPlugin from 'eslint-webpack-plugin';
 import devConfig from './dev';
 import prodConfig from './prod';
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge) => {
@@ -61,7 +62,21 @@ export default defineConfig(async (merge) => {
                     extensions: ['js', 'jsx', 'ts', 'tsx'],
                     exclude: ['node_modules'],
                     failOnError: true, // 发现错误时中断构建
-                }]);                
+                }]);
+                chain.plugin('fork-ts-checker-webpack-plugin')
+                .use(ForkTsCheckerWebpackPlugin, [{
+                    async: true, // 设置为同步模式，以确保在构建过程中进行类型检查
+                    typescript: {
+                        diagnosticOptions: {
+                            semantic: true,
+                            syntactic: true,
+                        },
+                        // reportFiles: ["src/**/*.{ts,tsx}", "!src/skip-folder/**/*"], // 配置报错文件范围
+                    },
+                    // eslint: {
+                    //     files: "./src/**/*.{ts,tsx,js,jsx}", // 配置ESLint报错文件范围
+                    // },
+                }]);        
             },
         },
         h5: {
@@ -97,6 +112,20 @@ export default defineConfig(async (merge) => {
                     exclude: ['node_modules'],
                     failOnError: true, // 发现错误时中断构建
                 }]);
+                chain.plugin('fork-ts-checker-webpack-plugin')
+                .use(ForkTsCheckerWebpackPlugin, [{
+                    async: false, // 设置为同步模式，以确保在构建过程中进行类型检查
+                    typescript: {
+                        diagnosticOptions: {
+                            semantic: true,
+                            syntactic: true,
+                        },
+                        // reportFiles: ["src/**/*.{ts,tsx}", "!src/skip-folder/**/*"], // 配置报错文件范围
+                    },
+                    // eslint: {
+                    //     files: "./src/**/*.{ts,tsx,js,jsx}", // 配置ESLint报错文件范围
+                    // },
+                }]);   
             },
         },
         rn: {

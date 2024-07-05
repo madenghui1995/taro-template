@@ -4,9 +4,9 @@
  */
 
 import { cRoutes } from './consts/cRoutes';
-import {
-    cSubRoutes,
-} from './consts/cSubRoutes';
+// import {
+//     cSubRoutes,
+// } from './consts/cSubRoutes';
 
 const tabBarConfig: {
     pagePath: string,
@@ -38,12 +38,12 @@ const getRoutes = () => {
     return keys.map(item => handleStr(cRoutes[item as keyof typeof cRoutes]));
 };
 
-const subRoutes: string[] = Object.values(cSubRoutes);
-const getSubRoutes = (prefix: string) => {
-    const subprefix = `${prefix}/`;
-    return subRoutes.filter(item => item.startsWith(subprefix))
-        .map((item: string) => item.replace(subprefix, ''));
-};
+// const subRoutes: string[] = Object.values(cSubRoutes);
+// const getSubRoutes = (prefix: string) => {
+//     const subprefix = `${prefix}/`;
+//     return subRoutes.filter(item => item.startsWith(subprefix))
+//         .map((item: string) => item.replace(subprefix, ''));
+// };
 
 const subPackages: {
     name: string,
@@ -70,7 +70,7 @@ const tabBar = {
         key: undefined,
         pagePath: handleStr(item.pagePath),
     })),
-};
+} as unknown as Taro.AppConfig['tabBar'];
 
 const pages = [
     ...getRoutes(),

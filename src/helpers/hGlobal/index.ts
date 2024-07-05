@@ -37,7 +37,7 @@ class HGlobal {
     private _brand = Taro.getStorageSync<string>(brandKey);
     private _system = Taro.getStorageSync<string>(systemKey);
 
-    private readonly _uuid = Taro.getStorageSync<string>(uuidKey) || '';
+    // private readonly _uuid = Taro.getStorageSync<string>(uuidKey) || '';
     private _openId = Taro.getStorageSync<string>(openIdKey) || '';
     private _userInfo = Taro.getStorageSync<UserInfo | null>(globalUserInfo) || null;
 
