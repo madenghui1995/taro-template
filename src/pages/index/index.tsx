@@ -1,16 +1,19 @@
-import { View, Text } from '@tarojs/components'
-import { useLoad } from '@tarojs/taro'
-import './index.scss'
+/**
+ * @Owners Jeannette
+ * @Title 首页
+ */
+import './index.scss';
+import { Text, View } from '@tarojs/components';
+import { useLoad } from '@tarojs/taro';
+import { hRequest } from '@/helpers';
 
 export default function Index() {
+    useLoad(() => {
+        hRequest.api.home.getTemplateComponentList({});
+    });
 
-  useLoad(() => {
-    console.log('Page loaded.')
-  })
-
-  return (
-      <View className='index'>
+    return (<View className='index'>
         <Text>1</Text>
-      </View>
-  )
+        <Text>2</Text>
+    </View>);
 }
