@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import React from 'react';
 
 import { dTaroUi } from '../../../../types/dTaroUi';
+
 import { mergeStyle, pxTransform } from './utils';
 
 export default class AtIcon extends React.Component<dTaroUi.AtIconProps> {

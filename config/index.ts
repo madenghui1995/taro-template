@@ -77,7 +77,7 @@ export default defineConfig(async (merge) => {
                     // eslint: {
                     //     files: "./src/**/*.{ts,tsx,js,jsx}", // 配置ESLint报错文件范围
                     // },
-                }]);     
+                }]);
                 // 代码分析
                 // chain.plugin('analyzer').use(WebpackBundleAnalyzer.BundleAnalyzerPlugin, []);
             },
@@ -128,7 +128,9 @@ export default defineConfig(async (merge) => {
                     // eslint: {
                     //     files: "./src/**/*.{ts,tsx,js,jsx}", // 配置ESLint报错文件范围
                     // },
-                }]);   
+                }]);
+                // 代码分析
+                // chain.plugin('analyzer').use(WebpackBundleAnalyzer.BundleAnalyzerPlugin, []);
             },
         },
         rn: {
