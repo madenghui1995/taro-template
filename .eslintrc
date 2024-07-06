@@ -34,7 +34,6 @@
   "noInlineConfig": false,
   "reportUnusedDisableDirectives": true,
   "rules": {
-
     "import/first": "off",
     "@typescript-eslint/prefer-const": "off",
     "@typescript-eslint/no-shadow": "off",
@@ -665,7 +664,30 @@
     ],
     "import/no-internal-modules": "off",
     "import/no-unassigned-import": "error",
-    "import/order": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreDeclarationSort": true
+      }
+    ],
     "jsdoc/check-alignment": "error",
     "jsdoc/check-indentation": "error",
     "jsdoc/newline-after-description": "off",
