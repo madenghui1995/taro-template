@@ -903,7 +903,8 @@
           "error",
           {
             "allow": [
-              "**/*.scss"
+              "**/*.scss",
+              "crypto-js/*"
             ]
           }
         ],
