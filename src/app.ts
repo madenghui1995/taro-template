@@ -2,8 +2,8 @@
  * @Owners JJ
  * @Title 初始化
  */
-import { PropsWithChildren } from 'react';
 import { useLaunch } from '@tarojs/taro';
+import { PropsWithChildren } from 'react';
 import './app.scss';
 
 function App({ children }: PropsWithChildren) {

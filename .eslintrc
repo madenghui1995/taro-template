@@ -24,7 +24,7 @@
     "eslint-plugin-jsdoc",
     "eslint-plugin-react",
     "eslint-plugin-header"
-],
+  ],
   "globals": {},
   "ignorePatterns": [
     "**/dist/**",
@@ -34,7 +34,6 @@
   "noInlineConfig": false,
   "reportUnusedDisableDirectives": true,
   "rules": {
-    "import/first": "off",
     "@typescript-eslint/prefer-const": "off",
     "@typescript-eslint/no-shadow": "off",
     "@typescript-eslint/adjacent-overload-signatures": [
@@ -297,8 +296,7 @@
     ],
     "@typescript-eslint/type-annotation-spacing": [
       "error",
-      {
-      }
+      {}
     ],
     "@typescript-eslint/typedef": "off",
     "@typescript-eslint/unbound-method": "off",
@@ -408,12 +406,6 @@
     "no-dupe-class-members": "off",
     "@typescript-eslint/no-dupe-class-members": "off",
     "no-duplicate-imports": "off",
-    "import/no-duplicates": [
-      "error",
-      {
-        "prefer-inline": true
-      }
-    ],
     "no-empty-function": "off",
     "@typescript-eslint/no-empty-function": "off",
     "no-extra-parens": "off",
@@ -553,8 +545,7 @@
     ],
     "no-invalid-regexp": [
       "error",
-      {
-      }
+      {}
     ],
     "no-irregular-whitespace": [
       "error",
@@ -672,7 +663,6 @@
           "external",
           "internal",
           "parent",
-          "sibling",
           "index"
         ],
         "newlines-between": "always",
@@ -682,10 +672,26 @@
         }
       }
     ],
+    "import/first": "error",
+    "import/no-duplicates": [
+      "error",
+      {
+        "prefer-inline": true
+      }
+    ],
+    "import/no-mutable-exports": "error",
+    "import/no-useless-path-segments": "error",
     "sort-imports": [
       "error",
       {
-        "ignoreDeclarationSort": true
+        "ignoreDeclarationSort": true,
+        "allowSeparatedGroups": true,
+        "memberSyntaxSortOrder": [
+          "multiple",
+          "single",
+          "all",
+          "none"
+        ]
       }
     ],
     "jsdoc/check-alignment": "error",
@@ -890,16 +896,26 @@
     },
     {
       "files": [
-          "./src/**"
+        "./src/**"
       ],
       "rules": {
-          "import/no-internal-modules": ["error", {
-              "allow": ["**/*.scss"]
-          }],
-          "import/no-unassigned-import": ["error", {
-              "allow": ["**/*.scss"]
-          }]
+        "import/no-internal-modules": [
+          "error",
+          {
+            "allow": [
+              "**/*.scss"
+            ]
+          }
+        ],
+        "import/no-unassigned-import": [
+          "error",
+          {
+            "allow": [
+              "**/*.scss"
+            ]
+          }
+        ]
       }
-  }
+    }
   ]
 }

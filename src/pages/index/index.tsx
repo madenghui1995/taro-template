@@ -7,7 +7,6 @@ import { useLoad } from '@tarojs/taro';
 
 import { hRequest } from '@/helpers';
 
-
 import './index.scss';
 
 export default function Index() {
