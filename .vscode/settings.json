@@ -36,7 +36,7 @@
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  },
+},
 
   "editor.detectIndentation": false,
   "editor.codeActionsOnSave": {
