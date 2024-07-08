@@ -2,7 +2,7 @@
  * @Owners linrui
  * @Title user helper
  */
-import { View, Text } from '@tarojs/components';
+import { Text, View } from '@tarojs/components';
 import { useLoad } from '@tarojs/taro';
 import './index.scss';
 

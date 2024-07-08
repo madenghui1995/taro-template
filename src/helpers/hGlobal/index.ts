@@ -3,6 +3,7 @@
  * @Title 维护一个冷启动周期内的全局变量模块
  */
 import Taro from '@tarojs/taro';
+
 import { cConfig } from '@/public/cConfig';
 
 const ratioKey = 'ratio';

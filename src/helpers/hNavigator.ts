@@ -3,10 +3,12 @@
  * @Title navigator helper
  */
 import Taro from '@tarojs/taro';
+
+import { tabBarConfig } from '../routerPath';
+
 import { cIcon, cRoutes } from '@/consts/index';
 import { uObject } from '@/utils';
 
-import { tabBarConfig } from '../routerPath';
 
 interface ParamsObject<T,> {
     [key: string]: T,

@@ -3,9 +3,10 @@
  * @Title hService helper
  */
 import Taro from '@tarojs/taro';
-import { uString, uUrl, uUuid } from '@/utils/index';
-import _ from 'lodash-es';
+import { omit } from 'lodash-es';
+
 import { FQHttpEnums } from '@/enums';
+import { uString, uUrl, uUuid } from '@/utils/index';
 
 // import Service.dRequest = Service.Service.dRequest;
 // import StatusCode = Service.eFetch.StatusCode;
@@ -95,7 +96,7 @@ export abstract class HService<TApis extends Service.dRequest.AnyObject<Service.
             opts.data = req;
         }
 
-        const apiOptions = _.omit(this.options, 'services');
+        const apiOptions = omit(this.options, 'services');
         const apiConfig = this.options.services[service][api];
 
         opts = { ...apiOptions, ...apiConfig, ...opts };

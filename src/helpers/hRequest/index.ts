@@ -3,26 +3,21 @@
  * @Title  图标组件
  */
 import Taro from '@tarojs/taro';
-// eslint-disable-next-line import/no-internal-modules
 import AES from 'crypto-js/aes';
-// eslint-disable-next-line import/no-internal-modules
 import Utf8 from 'crypto-js/enc-utf8';
-// eslint-disable-next-line import/no-internal-modules
 import MD5 from 'crypto-js/md5';
-// eslint-disable-next-line import/no-internal-modules
 import Pkcs7 from 'crypto-js/pad-pkcs7';
-import { cConfig } from '../../consts/';
+
+import { cConfig } from "../../consts";
 import { hGlobal } from '../../helpers/index';
-import { FQHttpEnums } from '@/enums';
-// import { uUuid } from '../../utils/uUuid';
-
 import { uAsync } from '../../utils/uAsync';
-
-import { HService as base } from './base';
-import { HttpApis, httpServices as services } from '@/helpers/hRequest/services';
+import { hUser } from '../hUser';
 
 import StatusCode = FQHttpEnums.BackEndStatusCode;
-import { hUser } from '../hUser';
+import { HService as base } from './base';
+import { FQHttpEnums } from '@/enums';
+import { HttpApis, httpServices as services } from '@/helpers/hRequest/services';
+
 
 type Checker = (
     data: Service.dRequest.ResponseData,
